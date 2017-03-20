@@ -8,7 +8,7 @@
           <a href="javascript:;" class="search-btn" v-on:click="search({name, type})"><img src="../../static/img/search.png" class="v-m"></a>
         </div>
         <div class="col v-m t-r">
-          <a href="#" class="add ib v-m">
+          <a href="#" class="add ib v-m" v-on:click="showMask">
             <img src="../../static/img/add.png" alt="" class="v-m">
             <span class="v-m">新增数据源</span>
           </a>
@@ -32,7 +32,7 @@
           <th v-for="item in caption">{{item}}</th>
         </tr>
         <tr v-for="(item,index) in limit" v-bind:index ="index">
-          <td>{{index+1}}</td>
+          <td>{{index+1+idx}}</td>
           <td>
             <img :src="'static/img/' + item.type + '.png'" alt="" class="v-m mr-10 ml-10">
             {{item.tit}}
@@ -44,9 +44,8 @@
           <td>{{item.post}}</td>
           <td>{{item.description}}</td>
           <td>
-            <button class="btn pop">连接测试</button>
             <button class="btn edit">修改</button>
-            <button class="btn del" v-on:click="info.splice(index, 1)">删除</button>
+            <button class="btn del" v-on:click="">删除</button>
           </td>
         </tr>
       </table>
@@ -64,10 +63,12 @@
         </div>
       </div>
     </div>
+    <addMask v-show="show"></addMask>
   </div>
 </template>
 
 <script>
+import addMask from './Mask'
 import {mapGetters, mapMutations, mapActions} from 'vuex'
 export default {
   data () {
@@ -77,11 +78,16 @@ export default {
       index: 0
     }
   },
+  components: {
+    addMask
+  },
   computed: {
     ...mapGetters({
       caption: 'getCaption',
       info: 'getInfo',
       limit: 'limit',
+      idx: 'idx',
+      show: 'show',
       sum: 'sum',
       i: 'i',
       n: 'n'
@@ -93,7 +99,8 @@ export default {
       next: 'next',
       home: 'home',
       end: 'end',
-      search: 'search'
+      search: 'search',
+      showMask: 'showMask'
     }),
     ...mapActions([])
   }

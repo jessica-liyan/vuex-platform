@@ -40,10 +40,46 @@ const config = {
     url: '/about',
     icon: 'icon-about'
   }],
+  form: [{
+    name: '数据源显示名称',
+    enname: 'tit',
+    content: 'info.tit',
+    description: '数据源中文名称'
+  }, {
+    name: '数据源名称',
+    enname: 'entit',
+    content: 'info.entit',
+    description: '数据源英文名称'
+  }, {
+    name: '默认数据库',
+    enname: 'default',
+    content: 'info.default',
+    description: '连接的默认数据库'
+  }, {
+    name: '数据库类型',
+    enname: 'type',
+    content: 'info.type',
+    description: '数据库类型'
+  }, {
+    name: '服务器地址',
+    enname: 'ip',
+    content: 'info.ip',
+    description: '连接的数据库服务器地址'
+  }, {
+    name: '端口号',
+    enname: 'post',
+    content: 'info.post',
+    description: '连接的数据库服务端口'
+  }, {
+    name: '数据库描述',
+    enname: 'description',
+    content: 'info.description',
+    description: ''
+  }],
   caption: [
     '序号',
-    '数据库显示名称',
-    '数据库名称',
+    '数据源显示名称',
+    '数据源名称',
     '默认数据库',
     '数据库类型',
     '服务器地址',

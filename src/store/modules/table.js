@@ -2,38 +2,35 @@ import config from '../../config'
 const state = {
   i: 0,
   max: 10,
+  show: false,
   info: config.info,
   caption: config.caption
 }
 const getters = {
+  show (state) {
+    return state.show
+  },
   getCaption (state) {
     return state.caption
   },
   getInfo (state) {
     return state.info
   },
+  idx (state) {
+    return state.i * state.max
+  },
   i (state) {
     return state.i + 1
   },
-  sum () {
-    return config.info.length
+  sum (state) {
+    return state.info.length
   },
-  n () {
-    return Math.ceil(config.info.length / state.max)
+  n (state) {
+    return Math.ceil(state.info.length / state.max)
   },
   limit (state) {
     return state.info.slice(state.i * state.max, (state.i + 1) * state.max)
   }
-  // searchpayload.name (state) {
-  //   return state.info.filter(function (item) {
-  //     return item.payload.name.match(payload.name)
-  //   })
-  // },
-  // searchType (state) {
-  //   return state.info.filter(function (item) {
-  //     return item.type.match(type)
-  //   })
-  // }
 }
 const mutations = {
   prev (state) {
@@ -57,6 +54,7 @@ const mutations = {
     state.i = n - 1
   },
   search (state, payload) {
+    state.info = config.info
     if (payload.name === '' && payload.type !== '') {
       state.info = state.info.filter(function (item) {
         return item.type.match(payload.type)
@@ -72,6 +70,9 @@ const mutations = {
     } else {
       state.info = state.info
     }
+  },
+  showMask (state) {
+    state.show = true
   }
 }
 const actions = {
