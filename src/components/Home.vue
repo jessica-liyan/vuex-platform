@@ -5,7 +5,7 @@
         <div class="col v-m">
           <input type="text" placeholder="数据源显示名称" v-model="name">
           <input type="text" placeholder="数据库类型" v-model="type">
-          <a href="javascript:;" class="search-btn" v-on:click="search(name,type)"><img src="../../static/img/search.png" class="v-m"></a>
+          <a href="javascript:;" class="search-btn" v-on:click="search({name, type})"><img src="../../static/img/search.png" class="v-m"></a>
         </div>
         <div class="col v-m t-r">
           <a href="#" class="add ib v-m">
@@ -31,7 +31,7 @@
         <tr>
           <th v-for="item in caption">{{item}}</th>
         </tr>
-        <tr v-for="(item,index) in info" v-bind:index ="index">
+        <tr v-for="(item,index) in limit" v-bind:index ="index">
           <td>{{index+1}}</td>
           <td>
             <img :src="'static/img/' + item.type + '.png'" alt="" class="v-m mr-10 ml-10">
@@ -57,10 +57,10 @@
           共<i v-text="n"></i>页，当前第<i v-text="i"></i>页，<i v-text="sum"></i>条记录
         </div>
         <div class="col t-r v-m">
-          <a href="javascript:;" v-on:click="">首页</a>
+          <a href="javascript:;" v-on:click="home()">首页</a>
           <a href="javascript:;" v-on:click="prev()">上一页</a>
           <a href="javascript:;" v-on:click="next(n)">下一页</a>
-          <a href="javascript:;" v-on:click="">末页</a>
+          <a href="javascript:;" v-on:click="end(n)">末页</a>
         </div>
       </div>
     </div>
@@ -81,6 +81,7 @@ export default {
     ...mapGetters({
       caption: 'getCaption',
       info: 'getInfo',
+      limit: 'limit',
       sum: 'sum',
       i: 'i',
       n: 'n'
@@ -89,7 +90,10 @@ export default {
   methods: {
     ...mapMutations({
       prev: 'prev',
-      next: 'next'
+      next: 'next',
+      home: 'home',
+      end: 'end',
+      search: 'search'
     }),
     ...mapActions([])
   }
