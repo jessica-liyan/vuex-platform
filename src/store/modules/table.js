@@ -73,9 +73,25 @@ const mutations = {
   },
   showMask (state) {
     state.show = true
+  },
+  addlist (state, payload) {
+    state.show = false
+    config.info.push(payload)
+  },
+  clearlist (state, payload) {
+    for (var key in payload) {
+      payload[key] = ''
+    }
   }
 }
 const actions = {
+  clear ({commit}) {
+    return new Promise((resolve) => {
+      commit('addlist')
+      commit('clearlist')
+      resolve()
+    })
+  }
 }
 export default {
   state,

@@ -1,7 +1,7 @@
 <template>
   <div class="mask">
     <div class="mask-wrap t-r">
-      <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="add">确定</a>
+      <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="addlist(list)">确定</a>
       <table class="mask-table">
         <colgroup>
           <col width="30%">
@@ -15,37 +15,37 @@
         </tr>
         <tr>
           <th>数据源显示名称</th>
-          <td class="input"><input type="text" v-model="info.tit" :value="info.tit"></td>
+          <td class="input"><input type="text" v-model="list.tit" :value="list.tit"></td>
           <td>数据源中文名称</td>
         </tr>
         <tr>
           <th>数据源名称</th>
-          <td class="input"><input type="text" v-model="info.entit"></td>
+          <td class="input"><input type="text" v-model="list.entit"></td>
           <td>数据源英文名称</td>
         </tr>
         <tr>
           <th>默认数据库</th>
-          <td class="input"><input type="text" v-model="info.default"></td>
+          <td class="input"><input type="text" v-model="list.default"></td>
           <td>连接的默认数据库</td>
         </tr>
         <tr>
           <th>数据库类型</th>
-          <td class="input"><input type="text" v-model="info.type"></td>
+          <td class="input"><input type="text" v-model="list.type"></td>
           <td>数据库类型</td>
         </tr>
         <tr>
           <th>服务器地址</th>
-          <td class="input"><input type="text" v-model="info.ip"></td>
+          <td class="input"><input type="text" v-model="list.ip"></td>
           <td>连接的数据库服务器地址</td>
         </tr>
         <tr>
           <th>端口号</th>
-          <td class="input"><input type="text" v-model="info.post"></td>
+          <td class="input"><input type="text" v-model="list.post"></td>
           <td>连接的数据库服务端口</td>
         </tr>
         <tr>
           <th>数据库描述</th>
-          <td class="input"><input type="text" v-model="info.description"></td>
+          <td class="input"><input type="text" v-model="list.description"></td>
           <td></td>
         </tr>
       </table>
@@ -55,12 +55,13 @@
 
 <script>
 import config from '../config'
+import {mapMutations, mapActions} from 'vuex'
 export default {
   name: 'mask',
   data () {
     return {
       form: config.form,
-      info: {
+      list: {
         tit: '',
         entit: '',
         default: '',
@@ -74,11 +75,12 @@ export default {
   computed: {
   },
   methods: {
-    add () {
-      this.form.map((item) => {
-        console.log(item.enname + ':' + )
-      })
-    }
+    ...mapMutations({
+      addlist: 'addlist'
+    }),
+    ...mapActions({
+      clear: 'clear'
+    })
   }
 }
 </script>
