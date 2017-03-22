@@ -63,125 +63,17 @@
         </div>
       </div>
     </div>
-    <div class="mask" v-show="add">
-      <div class="mask-wrap t-r">
-        <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="addlist(list)">确定</a>
-        <table class="mask-table">
-          <colgroup>
-            <col width="30%">
-            <col width="40%">
-            <col width="30%">
-          </colgroup>
-          <tr>
-            <th>信息名称</th>
-            <th>请在此栏填写信息内容</th>
-            <th>说明</th>
-          </tr>
-          <tr>
-            <th>数据源显示名称</th>
-            <td class="input"><input type="text" v-model="list.tit"></td>
-            <td>数据源中文名称</td>
-          </tr>
-          <tr>
-            <th>数据源名称</th>
-            <td class="input"><input type="text" v-model="list.entit"></td>
-            <td>数据源英文名称</td>
-          </tr>
-          <tr>
-            <th>默认数据库</th>
-            <td class="input"><input type="text" v-model="list.default"></td>
-            <td>连接的默认数据库</td>
-          </tr>
-          <tr>
-            <th>数据库类型</th>
-            <td class="select">
-              <select v-model="list.type">
-                <option>PostgreSQL</option>
-                <option>MySQL</option>
-                <option>Oracle</option>
-                <option>SQLServer</option>
-                <option>Hive</option>
-              </select>
-            </td>
-            <td>数据库类型</td>
-          </tr>
-          <tr>
-            <th>服务器地址</th>
-            <td class="input"><input type="text" v-model="list.ip"></td>
-            <td>连接的数据库服务器地址</td>
-          </tr>
-          <tr>
-            <th>端口号</th>
-            <td class="input"><input type="text" v-model="list.post"></td>
-            <td>连接的数据库服务端口</td>
-          </tr>
-          <tr>
-            <th>数据库描述</th>
-            <td class="input"><input type="text" v-model="list.description"></td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <div class="mask" v-show="change">
-      <div class="mask-wrap t-r">
-        <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="changelist(list)">确定</a>
-        <table class="mask-table">
-          <colgroup>
-            <col width="30%">
-            <col width="40%">
-            <col width="30%">
-          </colgroup>
-          <tr>
-            <th>信息名称</th>
-            <th>请在此栏填写信息内容</th>
-            <th>说明</th>
-          </tr>
-          <tr>
-            <th>数据源显示名称</th>
-            <td class="input"><input type="text" v-model="list.tit"></td>
-            <td>数据源中文名称</td>
-          </tr>
-          <tr>
-            <th>数据源名称</th>
-            <td class="input"><input type="text" v-model="list.entit"></td>
-            <td>数据源英文名称</td>
-          </tr>
-          <tr>
-            <th>默认数据库</th>
-            <td class="input"><input type="text" v-model="list.default"></td>
-            <td>连接的默认数据库</td>
-          </tr>
-          <tr>
-            <th>数据库类型</th>
-            <td class="input"><input type="text" v-model="list.type"></td>
-            <td>数据库类型</td>
-          </tr>
-          <tr>
-            <th>服务器地址</th>
-            <td class="input"><input type="text" v-model="list.ip"></td>
-            <td>连接的数据库服务器地址</td>
-          </tr>
-          <tr>
-            <th>端口号</th>
-            <td class="input"><input type="text" v-model="list.post"></td>
-            <td>连接的数据库服务端口</td>
-          </tr>
-          <tr>
-            <th>数据库描述</th>
-            <td class="input"><input type="text" v-model="list.description"></td>
-            <td></td>
-          </tr>
-        </table>
-      </div>
-    </div>
+    <AddMask></AddMask>
+    <ChangeMask></ChangeMask>
   </div>
 </template>
 
 <script>
-// 过滤掉重复的。name相同的就是修改，name不同的就是新增
-// 监听input中的数值变化，mutation中改变list的值     新增的input的值会互相影响？新增的如何添加到数据库？
+// 新增的时候，英文名称不能重复。修改的时候，英文名称不能修改
+// 如何将更改添加到数据库？
 import {mapGetters, mapMutations, mapActions} from 'vuex'
+import AddMask from './AddMask'
+import ChangeMask from './ChangeMask'
 export default {
   data () {
     return {
@@ -190,18 +82,19 @@ export default {
       index: 0
     }
   },
+  components: {
+    AddMask,
+    ChangeMask
+  },
   computed: {
     ...mapGetters({
       caption: 'getCaption',
       info: 'getInfo',
       limit: 'limit',
       idx: 'idx',
-      add: 'add',
-      change: 'change',
       sum: 'sum',
       i: 'i',
-      n: 'n',
-      list: 'list'
+      n: 'n'
     })
   },
   methods: {
@@ -212,9 +105,6 @@ export default {
       end: 'end',
       search: 'search',
       showMask: 'showMask',
-      confirm: 'confirm',
-      addlist: 'addlist',
-      changelist: 'changelist',
       edit: 'edit',
       del: 'del'
     }),
