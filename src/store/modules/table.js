@@ -1,14 +1,32 @@
 import config from '../../config'
 const state = {
   i: 0,
+  index: 0, // 用来存储删除的记录的索引
+  exist: false, // 判断是否存在同名的英文名称
   max: 10,
-  show: false,
+  add: false, // 弹出新增面板
+  change: false, // 弹出修改面板
   info: config.info,
-  caption: config.caption
+  caption: config.caption,
+  list: {
+    tit: '',
+    entit: '',
+    default: '',
+    type: '',
+    ip: '',
+    post: '',
+    description: ''
+  }
 }
 const getters = {
-  show (state) {
-    return state.show
+  add (state) {
+    return state.add
+  },
+  change (state) {
+    return state.change
+  },
+  list (state) {
+    return state.list
   },
   getCaption (state) {
     return state.caption
@@ -71,17 +89,39 @@ const mutations = {
       state.info = state.info
     }
   },
+  // 点击新增，添加遮罩，清空list数据
   showMask (state) {
-    state.show = true
+    state.add = true
+    state.list = {
+      tit: '',
+      entit: '',
+      default: '',
+      type: '',
+      ip: '',
+      post: '',
+      description: ''
+    }
   },
+  // 新增--确定
   addlist (state, payload) {
-    state.show = false
+    state.add = false
     config.info.push(payload)
   },
-  clearlist (state, payload) {
-    for (var key in payload) {
-      payload[key] = ''
-    }
+  // 修改--确定
+  changelist (state, payload) {
+    state.change = false
+    config.info.splice(state.index, 1, payload)
+  },
+  // 点击修改，添加遮罩，匹配list数据
+  edit (state, payload) {
+    state.change = true
+    state.list = payload.item
+    state.index = payload.index
+  },
+  // 点击删除
+  del (state, payload) {
+    state.index = payload.index
+    config.info.splice(state.index + payload.idx, 1)
   }
 }
 const actions = {

@@ -15,7 +15,7 @@
         </tr>
         <tr>
           <th>数据源显示名称</th>
-          <td class="input"><input type="text" v-model="list.tit" :value="list.tit"></td>
+          <td class="input"><input type="text" v-model="list.tit"></td>
           <td>数据源中文名称</td>
         </tr>
         <tr>
@@ -55,7 +55,7 @@
 
 <script>
 import config from '../config'
-import {mapMutations, mapActions} from 'vuex'
+import {mapGetters, mapMutations, mapActions} from 'vuex'
 export default {
   name: 'mask',
   data () {
@@ -73,22 +73,17 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      list: 'list'
+    })
   },
   methods: {
-<<<<<<< HEAD
-    add () {
-      this.form.map((item) => {
-        console.log(item.enname)
-      })
-    }
-=======
     ...mapMutations({
       addlist: 'addlist'
     }),
     ...mapActions({
       clear: 'clear'
     })
->>>>>>> a756dc861817a43d11c3f0b0fa57b3405bf8ecf8
   }
 }
 </script>

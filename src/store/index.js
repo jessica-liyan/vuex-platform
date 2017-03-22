@@ -8,7 +8,7 @@ import table from './modules/table'
 
 Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production'
+// const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
   actions,
   getters,
@@ -17,5 +17,5 @@ export default new Vuex.Store({
     nav,
     table
   },
-  strict: debug
+  strict: false
 })

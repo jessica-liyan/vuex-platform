@@ -44,8 +44,8 @@
           <td>{{item.post}}</td>
           <td>{{item.description}}</td>
           <td>
-            <button class="btn edit">修改</button>
-            <button class="btn del" v-on:click="">删除</button>
+            <button class="btn edit" v-on:click="edit({item,index,idx})">修改</button>
+            <button class="btn del" v-on:click="del({item,index,idx})">删除</button>
           </td>
         </tr>
       </table>
@@ -63,12 +63,124 @@
         </div>
       </div>
     </div>
-    <addMask v-show="show"></addMask>
+    <div class="mask" v-show="add">
+      <div class="mask-wrap t-r">
+        <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="addlist(list)">确定</a>
+        <table class="mask-table">
+          <colgroup>
+            <col width="30%">
+            <col width="40%">
+            <col width="30%">
+          </colgroup>
+          <tr>
+            <th>信息名称</th>
+            <th>请在此栏填写信息内容</th>
+            <th>说明</th>
+          </tr>
+          <tr>
+            <th>数据源显示名称</th>
+            <td class="input"><input type="text" v-model="list.tit"></td>
+            <td>数据源中文名称</td>
+          </tr>
+          <tr>
+            <th>数据源名称</th>
+            <td class="input"><input type="text" v-model="list.entit"></td>
+            <td>数据源英文名称</td>
+          </tr>
+          <tr>
+            <th>默认数据库</th>
+            <td class="input"><input type="text" v-model="list.default"></td>
+            <td>连接的默认数据库</td>
+          </tr>
+          <tr>
+            <th>数据库类型</th>
+            <td class="select">
+              <select v-model="list.type">
+                <option>PostgreSQL</option>
+                <option>MySQL</option>
+                <option>Oracle</option>
+                <option>SQLServer</option>
+                <option>Hive</option>
+              </select>
+            </td>
+            <td>数据库类型</td>
+          </tr>
+          <tr>
+            <th>服务器地址</th>
+            <td class="input"><input type="text" v-model="list.ip"></td>
+            <td>连接的数据库服务器地址</td>
+          </tr>
+          <tr>
+            <th>端口号</th>
+            <td class="input"><input type="text" v-model="list.post"></td>
+            <td>连接的数据库服务端口</td>
+          </tr>
+          <tr>
+            <th>数据库描述</th>
+            <td class="input"><input type="text" v-model="list.description"></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="mask" v-show="change">
+      <div class="mask-wrap t-r">
+        <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="changelist(list)">确定</a>
+        <table class="mask-table">
+          <colgroup>
+            <col width="30%">
+            <col width="40%">
+            <col width="30%">
+          </colgroup>
+          <tr>
+            <th>信息名称</th>
+            <th>请在此栏填写信息内容</th>
+            <th>说明</th>
+          </tr>
+          <tr>
+            <th>数据源显示名称</th>
+            <td class="input"><input type="text" v-model="list.tit"></td>
+            <td>数据源中文名称</td>
+          </tr>
+          <tr>
+            <th>数据源名称</th>
+            <td class="input"><input type="text" v-model="list.entit"></td>
+            <td>数据源英文名称</td>
+          </tr>
+          <tr>
+            <th>默认数据库</th>
+            <td class="input"><input type="text" v-model="list.default"></td>
+            <td>连接的默认数据库</td>
+          </tr>
+          <tr>
+            <th>数据库类型</th>
+            <td class="input"><input type="text" v-model="list.type"></td>
+            <td>数据库类型</td>
+          </tr>
+          <tr>
+            <th>服务器地址</th>
+            <td class="input"><input type="text" v-model="list.ip"></td>
+            <td>连接的数据库服务器地址</td>
+          </tr>
+          <tr>
+            <th>端口号</th>
+            <td class="input"><input type="text" v-model="list.post"></td>
+            <td>连接的数据库服务端口</td>
+          </tr>
+          <tr>
+            <th>数据库描述</th>
+            <td class="input"><input type="text" v-model="list.description"></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import addMask from './Mask'
+// 过滤掉重复的。name相同的就是修改，name不同的就是新增
+// 监听input中的数值变化，mutation中改变list的值     新增的input的值会互相影响？新增的如何添加到数据库？
 import {mapGetters, mapMutations, mapActions} from 'vuex'
 export default {
   data () {
@@ -78,19 +190,18 @@ export default {
       index: 0
     }
   },
-  components: {
-    addMask
-  },
   computed: {
     ...mapGetters({
       caption: 'getCaption',
       info: 'getInfo',
       limit: 'limit',
       idx: 'idx',
-      show: 'show',
+      add: 'add',
+      change: 'change',
       sum: 'sum',
       i: 'i',
-      n: 'n'
+      n: 'n',
+      list: 'list'
     })
   },
   methods: {
@@ -100,7 +211,12 @@ export default {
       home: 'home',
       end: 'end',
       search: 'search',
-      showMask: 'showMask'
+      showMask: 'showMask',
+      confirm: 'confirm',
+      addlist: 'addlist',
+      changelist: 'changelist',
+      edit: 'edit',
+      del: 'del'
     }),
     ...mapActions([])
   }
