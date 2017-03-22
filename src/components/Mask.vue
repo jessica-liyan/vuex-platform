@@ -76,7 +76,7 @@ export default {
   methods: {
     add () {
       this.form.map((item) => {
-        console.log(item.enname + ':' + )
+        console.log(item.enname)
       })
     }
   }
