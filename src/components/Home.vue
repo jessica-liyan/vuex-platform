@@ -29,7 +29,7 @@
           <col width="17%" />
         </colgroup>
         <tr>
-          <th v-for="item in caption">{{item}}</th>
+          <th v-for="item in caption">{{item['.value']}}</th>
         </tr>
         <tr v-for="(item,index) in limit" v-bind:index ="index">
           <td>{{index+1+idx}}</td>
@@ -45,7 +45,7 @@
           <td>{{item.description}}</td>
           <td>
             <button class="btn edit" v-on:click="edit({item,index,idx})">修改</button>
-            <button class="btn del" v-on:click="del({item,index,idx})">删除</button>
+            <button class="btn del" v-on:click="remove(item,index,idx)">删除</button>
           </td>
         </tr>
       </table>
@@ -80,12 +80,22 @@ export default {
       name: '',
       type: '',
       index: 0,
-      caption: []
+      info: this.$root.info,
+      caption: this.$root.caption
     }
   },
   created () {
-    this.caption = this.$root.caption
-    console.log(this.$root.caption)
+    this.$root.$wilddogRefs.info.push({
+      tit: '信息中心数据库',
+      entit: 'aa',
+      default: 'aa',
+      type: 'PostgreSQL',
+      ip: '10.0.0.14',
+      post: 54320,
+      description: '数据采集库'
+    })
+    this.getData(this.info)
+    this.getCaption(this.caption)
   },
   components: {
     AddMask,
@@ -103,7 +113,12 @@ export default {
     })
   },
   methods: {
+    remove (item, index, idx) {
+      this.$root.$wilddogRefs.info.splice(index + idx, 1)
+    },
     ...mapMutations({
+      getData: 'getData',
+      getCaption: 'getCaption',
       prev: 'prev',
       next: 'next',
       home: 'home',

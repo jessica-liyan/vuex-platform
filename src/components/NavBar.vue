@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations, mapActions} from 'vuex'
 import api from '../api'
 export default {
   name: 'hello',
@@ -21,12 +20,8 @@ export default {
     api.nav(this)
   },
   computed: {
-    ...mapGetters({
-    })
   },
   methods: {
-    ...mapMutations([]),
-    ...mapActions([])
   }
 }
 </script>

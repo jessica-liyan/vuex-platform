@@ -1,9 +1,10 @@
-import config from '../../config'
+// import config from '../../config'
+import wilddog from '../../wilddog'
 const state = {
   i: 0,
   max: 10, // 每页显示的条数
-  info: config.info,
-  caption: config.caption,
+  info: [],
+  caption: [],
   index: 0, // 用来存储删除的记录的索引
   exist: false, // 判断是否存在同名的英文名称
   add: false, // 弹出新增面板
@@ -59,6 +60,13 @@ const getters = {
   }
 }
 const mutations = {
+  // 获取野狗列表表单数据
+  getData (state, data) {
+    state.info = data
+  },
+  getCaption (state, data) {
+    state.caption = data
+  },
   // 上一页
   prev (state) {
     if (state.i > 0) {
@@ -85,7 +93,7 @@ const mutations = {
   },
   // 搜索
   search (state, payload) {
-    state.info = config.info
+    state.info = state.info
     if (payload.name === '' && payload.type !== '') {
       state.info = state.info.filter(function (item) {
         return item.type.match(payload.type)
@@ -124,17 +132,17 @@ const mutations = {
   // 点击删除
   del (state, payload) {
     state.index = payload.index
-    config.info.splice(state.index + payload.idx, 1)
+    state.info.splice(state.index + payload.idx, 1)
   },
   // 新增遮罩--确定
   addlist (state, payload) {
     state.add = false
-    config.info.push(payload)
+    wilddog.$wilddogRefs.info.push(payload)
   },
   // 修改遮罩--确定
   changelist (state, payload) {
     state.change = false
-    config.info.splice(state.index, 1, payload)
+    state.info.splice(state.index, 1, payload)
   }
 }
 const actions = {

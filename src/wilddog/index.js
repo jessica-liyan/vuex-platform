@@ -12,7 +12,7 @@ export default {
   ref: ref,
   caption: {
     source: sync.ref('/caption'),
-    asObject: false,
+    asArray: true,
     cancelCallback: function () {}
   },
   form: {

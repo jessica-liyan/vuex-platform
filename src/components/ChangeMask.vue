@@ -1,7 +1,7 @@
 <template>
     <div class="mask" v-show="change">
         <div class="mask-wrap t-r">
-            <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="changelist(list)">确定</a>
+            <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="changelist({list,info})">确定</a>
             <table class="mask-table">
               <colgroup>
                 <col width="30%">

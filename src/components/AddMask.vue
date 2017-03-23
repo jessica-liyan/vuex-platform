@@ -1,7 +1,7 @@
 <template>
     <div class="mask" v-show="add">
         <div class="mask-wrap t-r">
-          <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="addlist(list)">确定</a>
+          <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="add(list)">确定</a>
           <table class="mask-table">
               <colgroup>
                 <col width="30%">
@@ -71,11 +71,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      list: 'list',
-      add: 'add'
+      list: 'list'
     })
   },
   methods: {
+    add (list) {
+      this.$root.$wilddogRefs.info.push(list)
+    },
     ...mapMutations({
       addlist: 'addlist'
     })
