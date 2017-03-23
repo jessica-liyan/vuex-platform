@@ -1,19 +1,18 @@
 <template>
-  <div class='pie'>{{sex}}
+  <div class='pie'>
     <IEcharts :option='pie' :loading='loading' @ready='onReady' @click='onClick'></IEcharts>
   </div>
 </template>
 
 <script>
 import IEcharts from 'vue-echarts-v3'
-import {mapGetters, mapMutations, mapActions} from 'vuex'
-
 export default {
   name: 'hello',
   components: {
     IEcharts
   },
   data: () => ({
+    resident: [],
     loading: false,
     pie: {
       title: {
@@ -31,37 +30,51 @@ export default {
           fontStyle: 'normal'
         }
       },
-      series: [{
+      series: {
         name: '人数',
         type: 'pie',
         radius: ['50%', '70%'],
-        data: [{
-          name: '男',
-          value: 230
-        }, {
-          name: '女',
-          value: 100
-        }]
-      }],
+        data: []
+      },
       color: []
     }
   }),
   created () {
-    this.legend.data = this.sex
-    this.bar.series.data = this.age
-    this.bar.color = this.color
+    this.resident = this.$root.resident
+    this.pie.legend.data = this.getSex
+    this.pie.series.data = this.count(this.getSex)
+    this.pie.color = this.setColor
   },
   computed: {
-    ...mapGetters({
-      sex: 'getSex',
-      color: 'setColor'
-    })
+    getSex () {
+      let residentSex = []
+      this.resident.forEach((item) => {
+        residentSex.push(item.sex)
+      })
+      return residentSex
+    },
+    setColor (state) {
+      let color = ['rgb(245, 112, 105)', 'rgb(255, 179, 152)', 'rgb(159, 217, 190)', 'rgb(101, 138, 212)', 'rgb(213, 105, 153)']
+      return color
+    }
   },
   methods: {
-    ...mapMutations({
-    }),
-    ...mapActions({
-    }),
+    // 计算数组中各类别的数量，返回类型和数量的数组
+    count (arr) {
+      let arrCount = []
+      arr.sort()
+      for (var i = 0; i < arr.length;) {
+        let number = 0
+        for (var j = i; j < arr.length; j++) {
+          if (arr[i] === arr[j]) {
+            number++
+          }
+        }
+        arrCount.push({name: arr[i], value: number})
+        i += number
+      }
+      return arrCount
+    },
     doRandom () {
       const that = this
       let data = []

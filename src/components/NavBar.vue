@@ -9,20 +9,24 @@
 
 <script>
 import {mapGetters, mapMutations, mapActions} from 'vuex'
+import api from '../api'
 export default {
   name: 'hello',
+  data () {
+    return {
+      menu: this.$root.menu
+    }
+  },
+  created () {
+    api.nav(this)
+  },
   computed: {
     ...mapGetters({
-      menu: 'getMenu'
     })
   },
   methods: {
     ...mapMutations([]),
     ...mapActions([])
-  },
-  data () {
-    return {
-    }
   }
 }
 </script>

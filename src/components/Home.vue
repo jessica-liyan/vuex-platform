@@ -79,8 +79,13 @@ export default {
     return {
       name: '',
       type: '',
-      index: 0
+      index: 0,
+      caption: []
     }
+  },
+  created () {
+    this.caption = this.$root.caption
+    console.log(this.$root.caption)
   },
   components: {
     AddMask,

@@ -21,13 +21,13 @@ export default {
   data () {
     return {
       tab: [ {
-        text: '按部门统计',
+        text: '年龄分布',
         url: '/count/bar'
       }, {
-        text: '按性别统计',
+        text: '性别比例',
         url: '/count/pie'
       }, {
-        text: '按时间统计',
+        text: '部门分布',
         url: '/count/line'
       }]
     }

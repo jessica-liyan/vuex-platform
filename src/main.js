@@ -5,15 +5,15 @@ import App from './App'
 import router from './router'
 import store from './store'
 import IEcharts from 'vue-echarts-v3'
-
+import wilddog from './wilddog'
 Vue.use(IEcharts)
 
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  wilddog,
   store,
   template: '<App/>',
   components: { App }

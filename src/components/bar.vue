@@ -1,54 +1,129 @@
 <template>
-  <div class='bar'>{{color}}
+  <div class='bar'>
     <IEcharts :option='bar' :loading='loading' @ready='onReady' @click='onClick'></IEcharts>
   </div>
 </template>
 
 <script>
 import IEcharts from 'vue-echarts-v3'
-import {mapGetters, mapMutations, mapActions} from 'vuex'
 export default {
   name: 'hello',
   components: {
     IEcharts
   },
   data: () => ({
+    resident: [],
     loading: false,
     bar: {
       title: {
         text: ''
       },
-      tooltip: {},
-      xAxis: {
-        data: []
+      tooltip: {
+        trigger: 'axis'
       },
-      yAxis: {},
+      xAxis: {
+        data: [],
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#48b',
+            width: 1
+          }
+        },
+        axisLabel: {
+          textStyle: {
+            color: 'rgb(102, 102, 102)',
+            fontSize: 12
+          }
+        },
+        splitLine: {
+          lineStyle: {
+            type: 'dashed',
+            color: 'rgb(237, 237, 237)',
+            width: 1
+          },
+          show: false
+        },
+        axisTick: {
+          show: false
+        }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#48b',
+            width: 1
+          }
+        },
+        axisLabel: {
+          textStyle: {
+            color: 'rgb(102, 102, 102)',
+            fontSize: 12
+          }
+        },
+        splitLine: {
+          lineStyle: {
+            type: 'dashed',
+            color: 'rgb(237, 237, 237)',
+            width: 1
+          },
+          show: true
+        },
+        axisTick: {
+          show: false
+        }
+      },
       series: {
         name: 'Sales',
         type: 'bar',
+        barWidth: 30,
+        itemStyle: {
+          normal: {
+            label: {
+              show: true,
+              formatter: '{c}',
+              position: 'center',
+              textStyle: {
+                fontSize: 12,
+                color: '#fff'
+              }
+            }
+          }
+        },
         data: []
       },
       color: []
     }
   }),
   created () {
-    this.bar.series.data = this.age
-    this.bar.xAxis.data = this.name
-    this.bar.color = this.color
+    this.resident = this.$root.resident
+    this.bar.series.data = this.getAge
+    this.bar.xAxis.data = this.getName
+    this.bar.color = this.setColor
   },
   computed: {
-    ...mapGetters({
-      info: 'getResident',
-      name: 'getName',
-      age: 'getAge',
-      color: 'setColor'
-    })
+    getName () {
+      let residentName = []
+      this.resident.forEach((item) => {
+        residentName.push(item.name)
+      })
+      return residentName
+    },
+    getAge (state) {
+      let residentAge = []
+      this.resident.forEach((item) => {
+        residentAge.push(item.age)
+      })
+      return residentAge
+    },
+    setColor (state) {
+      let color = ['rgb(245, 112, 105)', 'rgb(255, 179, 152)', 'rgb(159, 217, 190)', 'rgb(101, 138, 212)', 'rgb(213, 105, 153)']
+      return color
+    }
   },
   methods: {
-    ...mapMutations({
-    }),
-    ...mapActions({
-    }),
     doRandom () {
       const that = this
       let data = []

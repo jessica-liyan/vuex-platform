@@ -17,7 +17,9 @@
     "vue-distpicker": "^1.0.4",
     "vue-echarts-v3": "^1.0.3",
     "vue-router": "^2.2.0",
-    "vuex": "^2.2.1"
+    "vuex": "^2.2.1",
+    "wilddog": "^2.5.2",
+    "wildvue": "^1.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
