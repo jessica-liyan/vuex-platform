@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
+import IEcharts from 'vue-echarts-v3'
+
+Vue.use(IEcharts)
 
 Vue.config.productionTip = false
 

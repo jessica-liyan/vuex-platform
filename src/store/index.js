@@ -5,6 +5,7 @@ import getters from './getters'
 import mutations from './mutations'
 import nav from './modules/nav'
 import table from './modules/table'
+import chart from './modules/chart'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
   mutations,
   modules: {
     nav,
-    table
+    table,
+    chart
   },
   strict: false
 })

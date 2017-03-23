@@ -271,6 +271,43 @@ const config = {
     ip: '10.0.0.14',
     post: 54320,
     description: '数据采集库'
+  }],
+  resident: [{
+    name: 'liyan',
+    age: 25,
+    department: 'design',
+    sex: '女',
+    time: '2015-07-01'
+  }, {
+    name: 'liyan1',
+    age: 21,
+    department: 'analysis',
+    sex: '女',
+    time: '2015-07-03'
+  }, {
+    name: 'liyan2',
+    age: 22,
+    department: 'design',
+    sex: '女',
+    time: '2015-07-10'
+  }, {
+    name: 'liuyong',
+    age: 20,
+    department: 'analysis',
+    sex: '男',
+    time: '2015-07-17'
+  }, {
+    name: 'liuyong1',
+    age: 30,
+    department: 'design',
+    sex: '女',
+    time: '2015-07-20'
+  }, {
+    name: 'liuyong2',
+    age: 25,
+    department: 'analysis',
+    sex: '男',
+    time: '2015-07-30'
   }]
 }
 export default config
