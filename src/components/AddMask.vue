@@ -1,5 +1,5 @@
 <template>
-    <div class="mask" v-show="add">
+    <div class="mask">
         <div class="mask-wrap t-r">
           <a href="#" class="search-btn" style="color:#fff;margin-bottom:10px;" v-on:click="add(list)">确定</a>
           <table class="mask-table">

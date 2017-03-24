@@ -7,8 +7,6 @@ const state = {
   caption: [],
   index: 0, // 用来存储删除的记录的索引
   exist: false, // 判断是否存在同名的英文名称
-  add: false, // 弹出新增面板
-  change: false, // 弹出修改面板
   list: {
     tit: '',
     entit: '',
@@ -111,8 +109,8 @@ const mutations = {
     }
   },
   // 点击新增，添加遮罩，清空list数据
-  showMask (state) {
-    state.add = true
+  showMask (state, payload) {
+    payload.add = true
     state.list = {
       tit: '',
       entit: '',
@@ -125,7 +123,7 @@ const mutations = {
   },
   // 点击修改，添加遮罩，匹配list数据
   edit (state, payload) {
-    state.change = true
+    payload.change = true
     state.list = payload.item
     state.index = payload.index
   },
@@ -136,12 +134,10 @@ const mutations = {
   },
   // 新增遮罩--确定
   addlist (state, payload) {
-    state.add = false
     wilddog.$wilddogRefs.info.push(payload)
   },
   // 修改遮罩--确定
   changelist (state, payload) {
-    state.change = false
     state.info.splice(state.index, 1, payload)
   }
 }

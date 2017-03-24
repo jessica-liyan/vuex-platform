@@ -8,7 +8,7 @@
           <a href="javascript:;" class="search-btn" v-on:click="search({name, type})"><img src="../../static/img/search.png" class="v-m"></a>
         </div>
         <div class="col v-m t-r">
-          <a href="#" class="add ib v-m" v-on:click="showMask">
+          <a href="#" class="add ib v-m" v-on:click="showMask({add})">
             <img src="../../static/img/add.png" alt="" class="v-m">
             <span class="v-m">新增数据源</span>
           </a>
@@ -44,7 +44,7 @@
           <td>{{item.post}}</td>
           <td>{{item.description}}</td>
           <td>
-            <button class="btn edit" v-on:click="edit({item,index,idx})">修改</button>
+            <button class="btn edit" v-on:click="edit({item,index,idx,change})">修改</button>
             <button class="btn del" v-on:click="remove(item,index,idx)">删除</button>
           </td>
         </tr>
@@ -63,8 +63,8 @@
         </div>
       </div>
     </div>
-    <AddMask></AddMask>
-    <ChangeMask></ChangeMask>
+    <AddMask v-show="add"></AddMask>
+    <ChangeMask v-show="change"></ChangeMask>
   </div>
 </template>
 
@@ -80,20 +80,14 @@ export default {
       name: '',
       type: '',
       index: 0,
+      add: false, // 弹出新增面板
+      change: false, // 弹出修改面板
       info: this.$root.info,
       caption: this.$root.caption
     }
   },
   created () {
-    this.$root.$wilddogRefs.info.push({
-      tit: '信息中心数据库',
-      entit: 'aa',
-      default: 'aa',
-      type: 'PostgreSQL',
-      ip: '10.0.0.14',
-      post: 54320,
-      description: '数据采集库'
-    })
+    this.$root.info.splice(0, 1)
     this.getData(this.info)
     this.getCaption(this.caption)
   },
