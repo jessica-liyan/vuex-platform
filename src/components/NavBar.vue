@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import api from '../api'
 export default {
   name: 'hello',
   data () {
@@ -17,7 +16,6 @@ export default {
     }
   },
   created () {
-    api.nav(this)
   },
   computed: {
   },

@@ -4,9 +4,19 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import IEcharts from 'vue-echarts-v3'
 import wilddog from './wilddog'
+import IEcharts from 'vue-echarts-v3'
+import VueTimepicker from 'vue2-timepicker'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'vue-lazyload-img'
+
 Vue.use(IEcharts)
+Vue.use(VueTimepicker)
+Vue.use(VueAwesomeSwiper)
+Vue.use(Vue.lazyimg, {
+  fadein: true,
+  speed: 20
+})
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */

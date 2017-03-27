@@ -108,7 +108,8 @@ export default {
   },
   methods: {
     remove (item, index, idx) {
-      this.$root.$wilddogRefs.info.splice(index + idx, 1)
+      console.log(item)
+      this.$root.$wilddogRefs.info.remove(item)
     },
     ...mapMutations({
       getData: 'getData',
