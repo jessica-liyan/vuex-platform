@@ -6,9 +6,11 @@ import Dist from '@/components/Dist'
 import Time from '@/components/Time'
 import Slider from '@/components/Slider'
 import LazyLoad from '@/components/LazyLoad'
-import Waterfall from '@/components/Waterfall'
-import Vwaterfall from '@/components/Vwaterfall'
-import Hwaterfall from '@/components/Hwaterfall'
+import LazyLoadDiy from '@/components/LazyLoadDiy'
+import LazyLoadDefault from '@/components/LazyLoadDefault'
+import waterfall from '@/components/waterfall'
+import waterfallV from '@/components/waterfallV'
+import waterfallH from '@/components/waterfallH'
 import bar from '@/components/bar'
 import line from '@/components/line'
 import pie from '@/components/pie'
@@ -34,7 +36,11 @@ export default new Router({
       name: 'photos',
       components: {
         default: LazyLoad
-      }
+      },
+      children: [
+        {path: '/photos/default', components: {default: LazyLoadDefault}},
+        {path: '/photos/diy', components: {default: LazyLoadDiy}}
+      ]
     },
     {
       path: '/dist',
@@ -61,11 +67,11 @@ export default new Router({
       path: '/waterfall',
       name: 'waterfall',
       components: {
-        default: Waterfall
+        default: waterfall
       },
       children: [
-        {path: '/waterfall/vertical', components: {default: Vwaterfall}},
-        {path: '/waterfall/horizontal', components: {default: Hwaterfall}}
+        {path: '/waterfall/vertical', components: {default: waterfallV}},
+        {path: '/waterfall/horizontal', components: {default: waterfallH}}
       ]
     },
     {

@@ -8,15 +8,14 @@ import wilddog from './wilddog'
 import IEcharts from 'vue-echarts-v3'
 import VueTimepicker from 'vue2-timepicker'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'vue-lazyload-img'
+import VueLazyLoadImg from 'vue-lazy-load-img'
+import VueScroller from 'vue-scroller'
 
 Vue.use(IEcharts)
 Vue.use(VueTimepicker)
 Vue.use(VueAwesomeSwiper)
-Vue.use(Vue.lazyimg, {
-  fadein: true,
-  speed: 20
-})
+Vue.use(VueLazyLoadImg)
+Vue.use(VueScroller)
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
