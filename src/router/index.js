@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
+import Books from '@/components/Books'
 import Count from '@/components/Count'
 import Dist from '@/components/Dist'
 import Time from '@/components/Time'
@@ -29,6 +30,13 @@ export default new Router({
       name: 'home',
       components: {
         default: Home
+      }
+    },
+    {
+      path: '/books',
+      name: 'books',
+      components: {
+        default: Books
       }
     },
     {

@@ -10,12 +10,14 @@ import VueTimepicker from 'vue2-timepicker'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueLazyLoadImg from 'vue-lazy-load-img'
 import VueScroller from 'vue-scroller'
+import VueResource from 'vue-resource'
 
 Vue.use(IEcharts)
 Vue.use(VueTimepicker)
 Vue.use(VueAwesomeSwiper)
 Vue.use(VueLazyLoadImg)
 Vue.use(VueScroller)
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */

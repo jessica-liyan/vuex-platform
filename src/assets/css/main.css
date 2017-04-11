@@ -41,13 +41,14 @@ html,body{height:100%;overflow:hidden;font-family:microsoft yahei;}
 .wrapper{padding:60px 20px 40px 20px;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;position:relative;}
 .table-wrap{width:100%;height:100%;overflow:auto;}
 .search{width:100%;height:60px;position:absolute;left:0;top:0;padding:0 20px;}
-.search-btn{display:inline-block;width:70px;padding:6px 0;background:#559EFE;text-align:center;}
+.search-btn{display:inline-block;width:70px;height:33px;background:#559EFE;text-align:center;vertical-align:middle;}
+.search-btn:before{content:"";display:inline-block;width:0;height:100%;vertical-align:middle;}
 .search-btn:active{opacity:0.8;}
 .pages{width:100%;height:40px;position:absolute;left:0;bottom:0;font-size:14px;color:#8c8f8f;padding:0 20px;}
 .pages a{margin:0 10px;}
 .pages a:hover,.pages a.active{color:#559EFE;}
 
-input{border:1px solid #559EFE;background:#fff;font-size:14px;color:#8c8f8f;padding:6px 1em;font-family:microsoft yahei;margin-right:10px;}
+input{border:1px solid #559EFE;background:#fff;font-size:14px;color:#8c8f8f;padding:6px 1em;font-family:microsoft yahei;margin-right:10px;vertical-align:middle;}
 table{width:100%;background:#F3F5F7;border:1px solid #DFE4E7;}
 table th,table td{padding:10px;font-size:14px;color:#8c8f8f;text-align:center;border-bottom:1px solid #DFE4E7;}
 table th{background:#ECEFF1;font-weight:normal;}
@@ -91,6 +92,17 @@ select{display:inline-block;border:1px solid #ccc;padding:8px 1em;margin:10px 5p
 .swiper-button-prev{background-image:url('../../../static/img/prev.png')!important;width:20px!important;height:20px!important;background-size:80% 80%!important;background-color:rgba(0,0,0,0.5);}
 .swiper-button-next:hover{opacity:0.8;}
 .swiper-button-prev:hover{opacity:0.8;}
-
-
+/*图书管理--基于豆瓣api*/
+.books{padding:20px;font-size:0;}
+.list{padding:20px 0;font-size:14px;color:#666;}
+#msg{font-size:12px;color:#999;padding:10px 0;}
+.item{border-bottom:1px dashed #ddd;position:relative;padding:10px 0;}
+.item img{width:90px;}
+.item-tit a{display:inline-block;font-size:14px;color:#3377AA;padding-bottom:10px;}
+.item-tit a:hover{text-decoration:underline;}
+.item-info{font-size:12px;color:#666;}
+.book-pages{padding:10px 0;}
+.book-pages span{display:inline-block;font-size:14px;color:#3377AA;width:30px;height:30px;line-height:30px;text-align:center;margin:0 5px;cursor:pointer;}
+.book-pages span:hover{color:#D8C942;}
+.book-pages a.active,.book-pages .current{background:#3377AA;color:#fff;}
 
